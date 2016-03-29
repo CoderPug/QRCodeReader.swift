@@ -104,8 +104,9 @@ public final class QRCodeReader: NSObject, AVCaptureMetadataOutputObjectsDelegat
       session.addInput(_defaultDeviceInput)
     }
 
-    metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-    metadataOutput.metadataObjectTypes = metadataObjectTypes
+//    metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+//    metadataOutput.metadataObjectTypes = metadataObjectTypes
+    
     previewLayer.videoGravity          = AVLayerVideoGravityResizeAspectFill
   }
 
@@ -143,6 +144,12 @@ public final class QRCodeReader: NSObject, AVCaptureMetadataOutputObjectsDelegat
     if session.running {
       session.stopRunning()
     }
+  }
+    
+  public func activateScanning() {
+    
+    metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+    metadataOutput.metadataObjectTypes = metadataObjectTypes
   }
 
   /**

@@ -30,8 +30,11 @@ import AVFoundation
 class ViewController: UIViewController, QRCodeReaderViewControllerDelegate {
   lazy var reader: QRCodeReaderViewController = {
     let builder = QRCodeViewControllerBuilder { builder in
-      builder.reader          = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
-      builder.showTorchButton = true
+      builder.reader                 = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
+      builder.showTorchButton        = false
+      builder.showCancelButton       = false
+      builder.showSwitchCameraButton = false
+
     }
 
     return QRCodeReaderViewController(builder: builder)

@@ -42,19 +42,20 @@ final class ReaderOverlayView: UIView {
 
   init() {
     super.init(frame: CGRectZero)  // Workaround for init in iOS SDK 8.3
-
-    layer.addSublayer(overlay)
   }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-
-    layer.addSublayer(overlay)
   }
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-
+  }
+    
+  func showOverlay() {
+    let innerRect = CGRectInset(self.frame, 50, 50)
+    let offsetRect = CGRectOffset(innerRect, 0, 15)
+    overlay.path  = UIBezierPath(roundedRect: offsetRect, cornerRadius: 5).CGPath
     layer.addSublayer(overlay)
   }
 
@@ -70,9 +71,5 @@ final class ReaderOverlayView: UIView {
       innerRect.origin.y    += (innerRect.height - minSize) / 2
       innerRect.size.height = minSize
     }
-
-    let offsetRect = CGRectOffset(innerRect, 0, 15)
-
-    overlay.path  = UIBezierPath(roundedRect: offsetRect, cornerRadius: 5).CGPath
   }
 }
